@@ -15,7 +15,7 @@ class Level extends Sprite
 	private var hero:Hero;
 	private var startingPosition:Point;
 	
-	private var onGround:Bool = true;
+	private var onGround:Bool = false;
 	private var jumping:Bool = false;
 	
 	public function new() 

@@ -61,4 +61,24 @@ class Hero extends AnimatedObject
 		return speed;
 	}
 	
+	public function getTopLeftCorner() : Sprite
+	{
+		return leftTopCorner;
+	}
+	
+	public function getTopRightCorner() : Sprite
+	{
+		return rightTopCorner;
+	}
+	
+	public function getBottomLeftCorner() : Sprite
+	{
+		return leftBottomCorner;
+	}
+	
+	public function getBottomRightCorner() : Sprite
+	{
+		return rightBottomCorner;
+	}
+	
 }
