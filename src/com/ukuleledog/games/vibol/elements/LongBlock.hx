@@ -13,9 +13,9 @@ class LongBlock extends GameObject
 	{
 		super();
 		
-		this.graphics.beginFill( 0xFF0000 );
+		//this.graphics.beginFill( 0xFF0000 );
 		this.graphics.drawRect( 0, 0, 256, 64 );
-		this.graphics.endFill();
+		//this.graphics.endFill();
 	}
 	
 }
