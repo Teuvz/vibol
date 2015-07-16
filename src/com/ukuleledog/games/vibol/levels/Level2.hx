@@ -5,7 +5,6 @@ import com.ukuleledog.games.core.Level;
 import com.ukuleledog.games.vibol.elements.Block;
 import com.ukuleledog.games.vibol.elements.Coin;
 import com.ukuleledog.games.vibol.elements.LongBlock;
-import com.ukuleledog.games.vibol.elements.Teleport;
 import com.ukuleledog.games.vibol.elements.Vibol;
 import com.ukuleledog.games.vibol.enemies.Schroom;
 import motion.Actuate;
@@ -18,7 +17,7 @@ import openfl.geom.Point;
  * ...
  * @author Matt
  */
-class Level1 extends VibolLevel
+class Level2 extends VibolLevel
 {
 
 	private var block1:Block;
@@ -121,11 +120,6 @@ class Level1 extends VibolLevel
 		coin.y = 64 * 4;
 		coin.x = 64 * 17.5;
 		addCollectible( coin );
-		
-		endTeleport = new Teleport();
-		endTeleport.y = 64 * 5;
-		endTeleport.x = 64 * 40;
-		addChild( endTeleport );
 		
 		setHero( new Vibol() );
 		startingPosition = new Point(0, 0);

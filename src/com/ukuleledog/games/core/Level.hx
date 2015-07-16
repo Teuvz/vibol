@@ -12,16 +12,23 @@ class Level extends Sprite
 {
 
 	private var elements:Array<GameObject>;
+	private var ennemies:Array<Ennemy>;
+	private var collectibles:Array<GameObject>;
 	private var hero:Hero;
 	private var startingPosition:Point;
 	
 	private var onGround:Bool = false;
 	private var jumping:Bool = false;
+	private var jumpPower:Int = 100;
+	private var jumpPeek:Int = 0;
+	private var gravity:Int = 1;
 	
 	public function new() 
 	{
 		super();
 		elements = new Array<GameObject>();
+		ennemies = new Array<Ennemy>();
+		collectibles = new Array<GameObject>();
 	}
 	
 	public function init()
@@ -40,6 +47,18 @@ class Level extends Sprite
 	{
 		elements.push( _element );
 		addChild( _element );
+	}
+	
+	public function addEnnemy( _ennemy:Ennemy )
+	{
+		ennemies.push( _ennemy );
+		addChild( _ennemy );
+	}
+	
+	public function addCollectible( _collectible:GameObject )
+	{
+		collectibles.push( _collectible );
+		addChild( _collectible );
 	}
 	
 	private function setCamera()
@@ -68,7 +87,7 @@ class Level extends Sprite
 	
 	public function moveLeft()
 	{
-		if ( hero.x > 0 + hero.getSpeed() )
+		if ( hero.x > 0 )
 			hero.x -= hero.getSpeed();
 			
 		if ( hero.x < 0 )
