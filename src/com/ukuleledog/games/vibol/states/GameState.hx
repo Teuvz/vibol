@@ -9,6 +9,7 @@ import com.ukuleledog.games.vibol.levels.Level2;
 import motion.Actuate;
 import openfl.Assets;
 import openfl.display.Bitmap;
+import openfl.errors.Error;
 import openfl.events.Event;
 import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
@@ -87,8 +88,9 @@ class GameState extends State
 		{
 			level.jump();
 		}
-					
+		
 		level.loop(e);
+		
 	}
 	
 	private function keyDownHandler( e:KeyboardEvent )

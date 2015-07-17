@@ -45,16 +45,16 @@ class Level1 extends VibolLevel
 		block3 = new Block();
 		addElement( block3, 4, 1 );
 				
-		floor1 = new LongBlock( 512 );
+		floor1 = new LongBlock( 8 );
 		addElement( floor1, 7 );
 				
-		floor2 = new LongBlock( 1408 - 896 );
+		floor2 = new LongBlock( 8 );
 		addElement( floor2, 7, 14 );
 		
 		block4 = new Block();
 		addElement( block4, 6, 27 );
 	
-		floor3 = new LongBlock( 2784 - 1728 );
+		floor3 = new LongBlock( 16.5 );
 		addElement( floor3, 7, 27 );
 		
 		ennemy1 = new Schroom();

@@ -3,6 +3,7 @@ package com.ukuleledog.games.vibol.levels;
 import com.ukuleledog.games.core.Level;
 import com.ukuleledog.games.vibol.elements.Teleport;
 import motion.Actuate;
+import openfl.errors.Error;
 import openfl.events.Event;
 
 /**
@@ -27,7 +28,7 @@ class VibolLevel extends Level
 	{
 		
 		onGround = false;
-		
+				
 		for ( element in elements )
 		{
 						
@@ -52,23 +53,27 @@ class VibolLevel extends Level
 				fallingSpeed = minFallingSpeed;
 			}
 			
+			element.move();
+			
 		}
-		
+	
 		if ( !onGround && !jumping )
 		{
 			hero.y += fallingSpeed;
 			
 			if ( fallingSpeed < maxFallingSpeed )
 				fallingSpeed += gravity;
-		}
 		
+		}
+	
 		if ( hero.y > stage.stageHeight )
 		{
+			trace( startingPosition );
 			hero.x = startingPosition.x;
 			hero.y = startingPosition.y;
 			this.x = 0;
 		}
-		
+	
 		for ( ennemy in ennemies )
 		{
 			if ( ennemy.hitTestObject( hero ) )
@@ -79,7 +84,7 @@ class VibolLevel extends Level
 			}
 			ennemy.roam();
 		}
-		
+	
 		for ( collectible in collectibles )
 		{
 			if ( collectible.hitTestObject( hero ) )
@@ -89,8 +94,8 @@ class VibolLevel extends Level
 				collectible = null;
 			}
 		}
-		
-		if ( endTeleport.hitTestObject( hero ) )
+	
+		if ( endTeleport != null && endTeleport.hitTestObject( hero ) )
 		{
 			dispatchEvent( new Event( Event.COMPLETE ) );
 		}

@@ -9,7 +9,7 @@ import com.ukuleledog.games.core.AnimatedObject;
 class Ennemy extends AnimatedObject
 {
 
-	private var speed:Int = 5;
+	//private var speed:Int = 5;
 	private var roaming:Bool = false;
 	private var roamingDistance:Int;
 	private var roamingMaxLeft:Float;
@@ -19,20 +19,20 @@ class Ennemy extends AnimatedObject
 	public function new() 
 	{
 		super();
-		
+		speed = 5;
 	}
 	
-	public function setRoaming( block:UInt )
+	public function setRoaming( block:UInt, _direction:String = 'right' )
 	{
 		roaming = true;
 		roamingDistance = 64 * block;
 		roamingMaxLeft = this.x - roamingDistance;
 		roamingMaxRight = this.x + roamingDistance;
 		
-		
+		roamingDirection = _direction;
 		
 	}
-	
+		
 	public function roam()
 	{
 		if ( roaming == true )

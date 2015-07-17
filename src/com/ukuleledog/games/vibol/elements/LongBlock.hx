@@ -9,13 +9,13 @@ import com.ukuleledog.games.core.GameObject;
 class LongBlock extends GameObject
 {
 
-	public function new( _length:Int = 0 ) 
+	public function new( _length:Float = 0 ) 
 	{
 		super();
 		
-		//this.graphics.beginFill( 0xFF0000 );
-		this.graphics.drawRect( 0, 0, _length, 64 );
-		//this.graphics.endFill();
+		this.graphics.beginFill( 0xFF0000 );
+		this.graphics.drawRect( 0, 0, _length * 64, 64 );
+		this.graphics.endFill();
 	}
 	
 }

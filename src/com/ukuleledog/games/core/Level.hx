@@ -14,6 +14,7 @@ class Level extends Sprite
 	private var elements:Array<GameObject>;
 	private var ennemies:Array<Ennemy>;
 	private var collectibles:Array<GameObject>;
+	private var movingElements:Array<GameObject>;
 	private var hero:Hero;
 	private var startingPosition:Point;
 	
@@ -29,12 +30,13 @@ class Level extends Sprite
 		elements = new Array<GameObject>();
 		ennemies = new Array<Ennemy>();
 		collectibles = new Array<GameObject>();
+		movingElements = new Array<GameObject>();
 	}
 	
 	public function init()
 	{
-		hero.x = startingPosition.x;
-		hero.y = startingPosition.y;
+		hero.x = startingPosition.x * 64;
+		hero.y = startingPosition.y * 64;
 		addChild( hero );
 	}
 	

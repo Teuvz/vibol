@@ -9,8 +9,6 @@ import openfl.display.Sprite;
  */
 class Hero extends AnimatedObject
 {
-
-	private var speed:Int = 5;
 	
 	/*private var leftTopCorner:Sprite;
 	private var leftBottomCorner:Sprite;
@@ -25,6 +23,7 @@ class Hero extends AnimatedObject
 	public function new() 
 	{
 		super();
+		speed = 5;
 		
 		topBumper = new Sprite();
 		topBumper.graphics.beginFill( 0xFF0000 );
