@@ -24,16 +24,10 @@ class Level1 extends VibolLevel
 	private var block1:Block;
 	private var block2:Block;
 	private var block3:Block;
+	private var block4:Block;
 	private var floor1:LongBlock;
 	private var floor2:LongBlock;
 	private var floor3:LongBlock;
-	private var floor4:LongBlock;
-	private var block4:Block;
-	private var floor5:LongBlock;
-	private var floor6:LongBlock;
-	private var floor7:LongBlock;
-	private var floor8:LongBlock;
-	private var floor9:LongBlock;
 	private var ennemy1:Schroom;
 	private var ennemy2:Schroom;
 	private var coin:Coin;
@@ -43,84 +37,36 @@ class Level1 extends VibolLevel
 		super();
 		
 		block1 = new Block();
-		block1.y = 64 * 5;
-		addElement( block1 );
+		addElement( block1, 5 );
 		
 		block2 = new Block();
-		block2.y = 64 * 3;
-		block2.x = 64 * 2;
-		addElement( block2 );
+		addElement( block2, 3, 2 );
 		
 		block3 = new Block();
-		block3.y = 64 * 4;
-		block3.x = 64 * 1;
-		addElement( block3 );
-		
-		floor1 = new LongBlock();
-		floor1.y = 64 * 7;
-		addElement( floor1 );
-		
-		floor2 = new LongBlock();
-		floor2.y = 64 * 7;
-		floor2.x = 64 * 4;
-		addElement( floor2 );
-		
-		floor3 = new LongBlock();
-		floor3.y = 64 * 7;
-		floor3.x = 64 * 14;
-		addElement( floor3 );
-		
-		floor4 = new LongBlock();
-		floor4.y = 64 * 7;
-		floor4.x = 64 * 18;
-		addElement( floor4 );
+		addElement( block3, 4, 1 );
+				
+		floor1 = new LongBlock( 512 );
+		addElement( floor1, 7 );
+				
+		floor2 = new LongBlock( 1408 - 896 );
+		addElement( floor2, 7, 14 );
 		
 		block4 = new Block();
-		block4.y = 64 * 6;
-		block4.x = 64 * 27;
-		addElement( block4 );
-		
-		floor5 = new LongBlock();
-		floor5.y = 64 * 7;
-		floor5.x = 64 * 27;
-		addElement( floor5 );
-		
-		floor6 = new LongBlock();
-		floor6.y = 64 * 7;
-		floor6.x = 64 * 31;
-		addElement( floor6 );
-		
-		floor7 = new LongBlock();
-		floor7.y = 64 * 7;
-		floor7.x = 64 * 35;
-		addElement( floor7 );
-		
-		floor8 = new LongBlock();
-		floor8.y = 64 * 7;
-		floor8.x = 64 * 39;
-		addElement( floor8 );
-		
-		floor9 = new LongBlock();
-		floor9.y = 64 * 7;
-		floor9.x = 64 * 39.5;
-		addElement( floor9 );
+		addElement( block4, 6, 27 );
+	
+		floor3 = new LongBlock( 2784 - 1728 );
+		addElement( floor3, 7, 27 );
 		
 		ennemy1 = new Schroom();
-		ennemy1.y = 64 * 6;
-		ennemy1.x = 64 * 4;
+		addEnnemy( ennemy1, 6, 4 );
 		ennemy1.setRoaming(2);
-		addEnnemy( ennemy1 );
 		
 		ennemy2 = new Schroom();
-		ennemy2.y = 64 * 6;
-		ennemy2.x = 64 * 34;
+		addEnnemy( ennemy2, 6, 34 );
 		ennemy2.setRoaming(3);
-		addEnnemy( ennemy2 );
 		
 		coin = new Coin();
-		coin.y = 64 * 4;
-		coin.x = 64 * 17.5;
-		addCollectible( coin );
+		addCollectible( coin, 4, 17 );
 		
 		endTeleport = new Teleport();
 		endTeleport.y = 64 * 5;

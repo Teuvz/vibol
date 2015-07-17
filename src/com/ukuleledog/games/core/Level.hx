@@ -43,20 +43,26 @@ class Level extends Sprite
 		hero = _hero;
 	}
 	
-	public function addElement( _element:GameObject )
+	public function addElement( _element:GameObject, _y:Int = 0, _x:Int = 0 )
 	{
+		_element.x = 64 * _x;
+		_element.y = 64 * _y;
 		elements.push( _element );
 		addChild( _element );
 	}
 	
-	public function addEnnemy( _ennemy:Ennemy )
+	public function addEnnemy( _ennemy:Ennemy, _y:Int = 0, _x:Int = 0 )
 	{
+		_ennemy.x = 64 * _x;
+		_ennemy.y = 64 * _y;
 		ennemies.push( _ennemy );
 		addChild( _ennemy );
 	}
 	
-	public function addCollectible( _collectible:GameObject )
+	public function addCollectible( _collectible:GameObject, _y:Int = 0, _x:Int = 0 )
 	{
+		_collectible.x = 64 * _x;
+		_collectible.y = 64 * _y;
 		collectibles.push( _collectible );
 		addChild( _collectible );
 	}

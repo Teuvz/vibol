@@ -30,16 +30,15 @@ class VibolLevel extends Level
 		
 		for ( element in elements )
 		{
-			
-			if ( element.hitTestObject( hero.getTopBumper() ) )
-			{
-				Actuate.stop( hero );
-				hero.y = element.y + element.height;
-			}
-			
+						
 			if ( element.hitTestObject( hero.getLeftBumper() ) )
 			{
 				hero.x = element.x + element.width;
+			}
+			else if ( element.hitTestObject( hero.getTopBumper() ) )
+			{
+				Actuate.stop( hero );
+				hero.y = element.y + element.height;
 			}
 			
 			if ( element.hitTestObject( hero.getRightBumper() ) )

@@ -28,33 +28,33 @@ class Hero extends AnimatedObject
 		
 		topBumper = new Sprite();
 		topBumper.graphics.beginFill( 0xFF0000 );
-		topBumper.graphics.drawRect( 0, 0, 54, 10 );
+		topBumper.graphics.drawRect( 0, 0, 49, 15 );
 		topBumper.graphics.endFill();
-		topBumper.x = 5;
+		topBumper.x = 7.5;
 		addChild(topBumper);
 		
 		bottomBumpter = new Sprite();
 		bottomBumpter.graphics.beginFill( 0xFF0000 );
-		bottomBumpter.graphics.drawRect( 0, 0, 54, 10 );
+		bottomBumpter.graphics.drawRect( 0, 0, 49, 15 );
 		bottomBumpter.graphics.endFill();
-		bottomBumpter.x = 5;
-		bottomBumpter.y = 54;
+		bottomBumpter.x = 7.5;
+		bottomBumpter.y = 49;
 		addChild(bottomBumpter);
 		
 		leftBumper = new Sprite();
 		leftBumper.graphics.beginFill( 0xFF0000 );
-		leftBumper.graphics.drawRect( 0, 0, 10, 54 );
+		leftBumper.graphics.drawRect( 0, 0, 15, 49 );
 		leftBumper.graphics.endFill();
 		leftBumper.x = 0;
-		leftBumper.y = 5;
+		leftBumper.y = 7.5;
 		addChild(leftBumper);
 		
 		rightBumper = new Sprite();
 		rightBumper.graphics.beginFill( 0xFF0000 );
-		rightBumper.graphics.drawRect( 0, 0, 10, 54 );
+		rightBumper.graphics.drawRect( 0, 0, 15, 49 );
 		rightBumper.graphics.endFill();
-		rightBumper.x = 54;
-		rightBumper.y = 5;
+		rightBumper.x = 49;
+		rightBumper.y = 7.5;
 		addChild(rightBumper);
 		
 		/*leftTopCorner = new Sprite();
