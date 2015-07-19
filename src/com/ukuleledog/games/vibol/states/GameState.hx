@@ -6,9 +6,12 @@ import com.ukuleledog.games.core.Level;
 import com.ukuleledog.games.vibol.elements.Vibol;
 import com.ukuleledog.games.vibol.levels.Level1;
 import com.ukuleledog.games.vibol.levels.Level2;
+import com.ukuleledog.games.vibol.levels.Level3;
+import com.ukuleledog.games.vibol.levels.Level4;
 import motion.Actuate;
 import openfl.Assets;
 import openfl.display.Bitmap;
+import openfl.display.FPS;
 import openfl.errors.Error;
 import openfl.events.Event;
 import openfl.events.KeyboardEvent;
@@ -31,7 +34,7 @@ class GameState extends State
 		addEventListener( Event.ADDED_TO_STAGE, init );
 		
 		keysPressed = new Array<Bool>();
-		level = new Level1();
+		level = new Level4();
 	}
 	
 	private function init( e:Event )
@@ -51,7 +54,13 @@ class GameState extends State
 		removeEventListener( Event.ENTER_FRAME, loop );
 		level.removeEventListener( Event.COMPLETE, changeLevel );
 		
-		Actuate.tween( this, 1, { alpha:0 } ).onComplete( function() {
+		Actuate.tween( this, 1, { alpha:0 } ).onComplete( changeLevelReady );
+		
+	}
+	
+	private function changeLevelReady()
+	{
+		removeChild( level );
 			level = null;
 			levelNb++;
 			
@@ -59,17 +68,21 @@ class GameState extends State
 			{
 				case 2:
 					level = new Level2();
+				case 3:
+					level = new Level3();
+				case 4:
+					level = new Level4();
 			}
 			
 			addChild( level );
-			
-			Actuate.tween( this, 1, { alpha:1 } ).onComplete( function() {
-				addEventListener( Event.ENTER_FRAME, loop );
-				level.addEventListener( Event.COMPLETE, changeLevel );
-			});
-			
-		});
-		
+						
+			Actuate.tween( this, 1, { alpha:1 } ).onComplete( changeLevelEnd );
+	}
+	
+	private function changeLevelEnd()
+	{
+		addEventListener( Event.ENTER_FRAME, loop );
+		level.addEventListener( Event.COMPLETE, changeLevel );
 	}
 	
 	private function loop( e:Event )
@@ -84,9 +97,14 @@ class GameState extends State
 			level.moveLeft();
 		}
 		
-		if ( keysPressed[Keyboard.SPACE] == true )
+		if ( keysPressed[Keyboard.A] == true && level.canJump() )
 		{
 			level.jump();
+		}
+		
+		if ( keysPressed[Keyboard.Z] == true )
+		{
+			level.action();
 		}
 		
 		level.loop(e);

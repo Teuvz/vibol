@@ -42,13 +42,19 @@ class Frog extends Ennemy
 				roamingDirection = 'left';
 			}
 			
-			Actuate.tween( this, 0.8, { y: originalY - 32, x:targetX } ).ease( Linear.easeNone ).onComplete( function() {
-				Actuate.tween( this, 1, { y: originalY } ).ease( Linear.easeNone ).onComplete( function() {
-					canJump = true;
-				});
-			});
+			Actuate.tween( this, 0.8, { y: originalY - 32, x:targetX } ).ease( Linear.easeNone ).onComplete( jumpReturn );
 			
 		}
+	}
+	
+	private function jumpReturn()
+	{
+		Actuate.tween( this, 1, { y: originalY } ).ease( Linear.easeNone ).onComplete( jumpEnd );
+	}
+	
+	private function jumpEnd()
+	{
+		canJump = true;
 	}
 	
 }

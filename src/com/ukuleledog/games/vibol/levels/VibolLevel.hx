@@ -3,6 +3,7 @@ package com.ukuleledog.games.vibol.levels;
 import com.ukuleledog.games.core.Level;
 import com.ukuleledog.games.vibol.elements.Teleport;
 import motion.Actuate;
+import motion.easing.Linear;
 import openfl.errors.Error;
 import openfl.events.Event;
 
@@ -13,6 +14,7 @@ import openfl.events.Event;
 class VibolLevel extends Level
 {
 
+	private var fightRoom:Bool = false;
 	private var endTeleport:Teleport;
 	private var fallingSpeed:Int = 1;
 	private var minFallingSpeed:Int = 1;
@@ -24,33 +26,45 @@ class VibolLevel extends Level
 		
 	}
 	
+	public function activateFighting()
+	{
+		fightRoom = true;
+	}
+	
 	override public function loop( e:Event )
 	{
+		
+		if ( playing == false )
+			return;
 		
 		onGround = false;
 				
 		for ( element in elements )
 		{
-						
-			if ( element.hitTestObject( hero.getLeftBumper() ) )
+			if ( element.isColider() )
 			{
-				hero.x = element.x + element.width;
-			}
-			else if ( element.hitTestObject( hero.getTopBumper() ) )
-			{
-				Actuate.stop( hero );
-				hero.y = element.y + element.height;
-			}
+				
+				if ( element.hitTestObject( hero.getLeftBumper() ) )
+				{
+					hero.x = element.x + element.width;
+				}
+				else if ( element.hitTestObject( hero.getTopBumper() ) )
+				{
+					Actuate.stop( hero );
+					hero.y = element.y + element.height;
+				}
+				
+				if ( element.hitTestObject( hero.getRightBumper() ) )
+				{
+					hero.x = element.x - hero.width;
+				}
+				
+				if ( element.hitTestObject( hero.getBottomBumper() ) )
+				{
+					onGround = true;					
+					fallingSpeed = minFallingSpeed;
+				}
 			
-			if ( element.hitTestObject( hero.getRightBumper() ) )
-			{
-				hero.x = element.x - hero.width;
-			}
-			
-			if ( element.hitTestObject( hero.getBottomBumper() ) )
-			{
-				onGround = true;					
-				fallingSpeed = minFallingSpeed;
 			}
 			
 			element.move();
@@ -68,19 +82,20 @@ class VibolLevel extends Level
 	
 		if ( hero.y > stage.stageHeight )
 		{
-			trace( startingPosition );
-			hero.x = startingPosition.x;
-			hero.y = startingPosition.y;
-			this.x = 0;
+			hero.x = startingPosition.x * 64;
+			hero.y = startingPosition.y * 64;
+			
+			Actuate.tween( this, 1, { x: 0 } ).ease( Linear.easeNone );
 		}
 	
 		for ( ennemy in ennemies )
 		{
 			if ( ennemy.hitTestObject( hero ) )
 			{
-				hero.x = startingPosition.x;
-				hero.y = startingPosition.y;
-				this.x = 0;	
+				hero.x = startingPosition.x * 64;
+				hero.y = startingPosition.y * 64;
+				
+				Actuate.tween( this, 1, { x: 0 } ).ease( Linear.easeNone );
 			}
 			ennemy.roam();
 		}
@@ -94,12 +109,21 @@ class VibolLevel extends Level
 				collectible = null;
 			}
 		}
+		
+		for ( gameEvent in gameEvents )
+		{
+			if ( gameEvent.hitTestObject( hero ) )
+			{
+				removeChild( gameEvent );
+				gameEvents.remove( gameEvent );
+				manageEvent( gameEvent );
+			}
+		}
 	
 		if ( endTeleport != null && endTeleport.hitTestObject( hero ) )
 		{
 			dispatchEvent( new Event( Event.COMPLETE ) );
 		}
-		
 	}
 	
 	override public function jump()
@@ -107,7 +131,20 @@ class VibolLevel extends Level
 		if ( !jumping && onGround )
 		{
 			jumping = true;
-			Actuate.tween( hero, 1, { y: hero.y - jumpPower } ).onComplete( function() { jumping = false; } );
+			Actuate.tween( hero, 1, { y: hero.y - jumpPower } ).onComplete( endJump );
+		}
+	}
+	
+	private function endJump()
+	{
+		jumping = false;
+	}
+	
+	override public function action()
+	{
+		if ( fightRoom )
+		{
+			trace( 'hello' );
 		}
 	}
 	

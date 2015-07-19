@@ -14,6 +14,7 @@ class GameObject extends Sprite
 
 	public var bmd:BitmapData;
 	
+	private var colider:Bool = true;
 	private var isMoving:Bool = false;
 	private var moving:Bool = false;
 	private var originalX:Float;
@@ -47,20 +48,30 @@ class GameObject extends Sprite
 			
 			if ( movingOriginal )
 			{
-				Actuate.tween( this, speed, { x: finalX, y: finalY } ).onComplete( function() {
-					movingOriginal = false;
-					isMoving = false;
-				});
+				Actuate.tween( this, speed, { x: finalX, y: finalY } ).onComplete( moveEnd );
 			}
 			else
 			{
-				Actuate.tween( this, speed, { x: originalX, y: originalY } ).onComplete( function() {
-					movingOriginal = true;
-					isMoving = false;
-				});
+				Actuate.tween( this, speed, { x: originalX, y: originalY } ).onComplete( moveEnd );
 			}
 			
 		}
+	}
+	
+	private function moveEnd()
+	{
+		movingOriginal = !movingOriginal;		
+		isMoving = false;
+	}
+	
+	public function setColider( value:Bool )
+	{
+		colider = value;
+	}
+	
+	public function isColider() : Bool
+	{
+		return colider;
 	}
 	
 }

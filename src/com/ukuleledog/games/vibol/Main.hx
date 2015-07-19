@@ -1,5 +1,6 @@
 package com.ukuleledog.games.vibol;
 
+import com.kircode.debug.FPS_Mem;
 import com.ukuleledog.games.core.State;
 import com.ukuleledog.games.vibol.states.GameState;
 import com.ukuleledog.games.vibol.states.IntroState;
@@ -7,6 +8,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.Lib;
 import motion.Actuate;
+import openfl.display.FPS;
 
 /**
  * ...
@@ -17,6 +19,7 @@ class Main extends Sprite
 {
 	var inited:Bool;
 	var currentState:State;
+	var fps:FPS_Mem;
 
 	/* ENTRY POINT */
 	
@@ -43,14 +46,19 @@ class Main extends Sprite
 		currentState = new GameState();
 		currentState.addEventListener( Event.COMPLETE, startGame );
 		addChild( currentState );
+		
+		fps = new FPS_Mem( 10, 10, 0xFFFFFF );
+		addChild( fps );
 	}
 	
 	private function startGame( e:Event )
 	{
+		removeChild( fps );
 		removeChild( currentState );
 		currentState = new GameState();
 		currentState.alpha = 0;
 		addChild( currentState );
+		addChild( fps );
 		Actuate.tween( currentState, 0.5, { alpha:1 } );
 	}
 

@@ -2,6 +2,7 @@ package com.ukuleledog.games.core;
 import com.ukuleledog.games.core.Hero;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import openfl.filters.BitmapFilterType;
 import openfl.geom.Point;
 
 /**
@@ -11,10 +12,12 @@ import openfl.geom.Point;
 class Level extends Sprite
 {
 
+	private var playing:Bool = true;
 	private var elements:Array<GameObject>;
 	private var ennemies:Array<Ennemy>;
 	private var collectibles:Array<GameObject>;
 	private var movingElements:Array<GameObject>;
+	private var gameEvents:Array<GameObject>;
 	private var hero:Hero;
 	private var startingPosition:Point;
 	
@@ -31,6 +34,7 @@ class Level extends Sprite
 		ennemies = new Array<Ennemy>();
 		collectibles = new Array<GameObject>();
 		movingElements = new Array<GameObject>();
+		gameEvents = new Array<GameObject>();
 	}
 	
 	public function init()
@@ -69,6 +73,14 @@ class Level extends Sprite
 		addChild( _collectible );
 	}
 	
+	public function addGameEvent( _gameEvent:GameObject, _y:Int = 0, _x:Int = 0 )
+	{
+		_gameEvent.x = 64 * _x;
+		_gameEvent.y = 64 * _y;
+		gameEvents.push( _gameEvent );
+		addChild( _gameEvent );
+	}
+	
 	private function setCamera()
 	{
 		if ( hero.x > ( (stage.stageWidth / 2) - (hero.width / 2) ) )
@@ -84,8 +96,10 @@ class Level extends Sprite
 	
 	public function moveRight()
 	{
-		if ( hero.x + hero.width < this.width - hero.getSpeed() )
+		if ( hero.x + hero.width < this.width - hero.getSpeed() && playing )
+		{
 			hero.x += hero.getSpeed();
+		}
 			
 		if ( (hero.x + hero.width) > this.width )
 			hero.x = this.width - hero.width;
@@ -95,7 +109,7 @@ class Level extends Sprite
 	
 	public function moveLeft()
 	{
-		if ( hero.x > 0 )
+		if ( hero.x > 0 && playing )
 			hero.x -= hero.getSpeed();
 			
 		if ( hero.x < 0 )
@@ -125,6 +139,17 @@ class Level extends Sprite
 	}
 	
 	public function loop( e:Event )
+	{
+		
+	}
+	
+	public function canJump() : Bool
+	{
+		return ( !jumping && onGround );
+		
+	}
+	
+	public function manageEvent( _gameEvent:GameObject )
 	{
 		
 	}
