@@ -1,6 +1,9 @@
 package com.ukuleledog.games.vibol.elements;
 
 import com.ukuleledog.games.core.Hero;
+import motion.Actuate;
+import motion.easing.Bounce;
+import motion.easing.Linear;
 import openfl.Assets;
 
 /**

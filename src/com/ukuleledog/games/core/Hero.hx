@@ -20,6 +20,8 @@ class Hero extends AnimatedObject
 	private var leftBumper:Sprite;
 	private var rightBumper:Sprite;
 	
+	private var weapon:Weapon;
+	
 	public function new() 
 	{
 		super();
@@ -135,5 +137,5 @@ class Hero extends AnimatedObject
 	{
 		return rightBottomCorner;
 	}*/
-	
+		
 }

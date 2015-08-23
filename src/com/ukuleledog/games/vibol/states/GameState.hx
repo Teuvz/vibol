@@ -8,6 +8,7 @@ import com.ukuleledog.games.vibol.levels.Level1;
 import com.ukuleledog.games.vibol.levels.Level2;
 import com.ukuleledog.games.vibol.levels.Level3;
 import com.ukuleledog.games.vibol.levels.Level4;
+import com.ukuleledog.games.vibol.levels.Level5;
 import motion.Actuate;
 import openfl.Assets;
 import openfl.display.Bitmap;
@@ -34,7 +35,7 @@ class GameState extends State
 		addEventListener( Event.ADDED_TO_STAGE, init );
 		
 		keysPressed = new Array<Bool>();
-		level = new Level4();
+		level = new Level5();
 	}
 	
 	private function init( e:Event )
@@ -61,22 +62,24 @@ class GameState extends State
 	private function changeLevelReady()
 	{
 		removeChild( level );
-			level = null;
-			levelNb++;
-			
-			switch( levelNb )
-			{
-				case 2:
-					level = new Level2();
-				case 3:
-					level = new Level3();
-				case 4:
-					level = new Level4();
-			}
-			
-			addChild( level );
-						
-			Actuate.tween( this, 1, { alpha:1 } ).onComplete( changeLevelEnd );
+		level = null;
+		levelNb++;
+		
+		switch( levelNb )
+		{
+			case 2:
+				level = new Level2();
+			case 3:
+				level = new Level3();
+			case 4:
+				level = new Level4();
+			case 5:
+				level = new Level5();
+		}
+		
+		addChild( level );
+					
+		Actuate.tween( this, 1, { alpha:1 } ).onComplete( changeLevelEnd );
 	}
 	
 	private function changeLevelEnd()

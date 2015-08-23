@@ -14,12 +14,14 @@ class Frog extends Ennemy
 	private var canJump:Bool = true;
 	private var initialized:Bool = false;
 	
-	public function new() 
+	public function new( moving:Bool = true ) 
 	{
 		super();
 		this.graphics.beginFill(0x00FF00);
 		this.graphics.drawRect( 0, 0, 64, 64 );
 		this.graphics.endFill();
+		
+		canJump = moving;
 	}
 	
 	override public function roam()

@@ -1,6 +1,7 @@
 package com.ukuleledog.games.core;
 
 import motion.Actuate;
+import motion.easing.Linear;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
@@ -48,11 +49,11 @@ class GameObject extends Sprite
 			
 			if ( movingOriginal )
 			{
-				Actuate.tween( this, speed, { x: finalX, y: finalY } ).onComplete( moveEnd );
+				Actuate.tween( this, speed, { x: finalX, y: finalY } ).ease(Linear.easeNone).onComplete( moveEnd );
 			}
 			else
 			{
-				Actuate.tween( this, speed, { x: originalX, y: originalY } ).onComplete( moveEnd );
+				Actuate.tween( this, speed, { x: originalX, y: originalY } ).ease(Linear.easeNone).onComplete( moveEnd );
 			}
 			
 		}
@@ -72,6 +73,11 @@ class GameObject extends Sprite
 	public function isColider() : Bool
 	{
 		return colider;
+	}
+	
+	public function mustTestCollision( _x:Float, _y:Float ) : Bool
+	{
+		return ( ( x - _x < 100 ) || ( _x - x < 100 ) );
 	}
 	
 }

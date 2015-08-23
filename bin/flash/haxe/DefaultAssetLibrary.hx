@@ -52,6 +52,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/background2.png", AssetType.IMAGE);
 		className.set ("img/background3.png", __ASSET__img_background3_png);
 		type.set ("img/background3.png", AssetType.IMAGE);
+		className.set ("img/background4.png", __ASSET__img_background4_png);
+		type.set ("img/background4.png", AssetType.IMAGE);
+		className.set ("img/background5.png", __ASSET__img_background5_png);
+		type.set ("img/background5.png", AssetType.IMAGE);
 		className.set ("img/hero.png", __ASSET__img_hero_png);
 		type.set ("img/hero.png", AssetType.IMAGE);
 		className.set ("img/intro-adventure.png", __ASSET__img_intro_adventure_png);
@@ -92,6 +96,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.IMAGE);
 		id = "img/background3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/background4.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/background5.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -159,6 +171,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__font_mtf_epic_ttf);
 		
 		#end
@@ -178,6 +192,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("img/background3.png", __ASSET__img_background3_png);
 		type.set ("img/background3.png", AssetType.IMAGE);
+		
+		className.set ("img/background4.png", __ASSET__img_background4_png);
+		type.set ("img/background4.png", AssetType.IMAGE);
+		
+		className.set ("img/background5.png", __ASSET__img_background5_png);
+		type.set ("img/background5.png", AssetType.IMAGE);
 		
 		className.set ("img/hero.png", __ASSET__img_hero_png);
 		type.set ("img/hero.png", AssetType.IMAGE);
@@ -789,6 +809,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__img_background_psd extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__img_background2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_background3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_background4_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_background5_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_hero_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_intro_adventure_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_intro_epic_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -805,6 +827,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 #elseif html5
 
 #if openfl
+
+
 
 
 
@@ -837,6 +861,8 @@ class __ASSET__font_mtf_epic_ttf extends openfl.text.Font { public function new 
 //@:file("assets/img/background.psd") class __ASSET__img_background_psd extends lime.utils.ByteArray {}
 //@:bitmap("assets/img/background2.png") class __ASSET__img_background2_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/background3.png") class __ASSET__img_background3_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/background4.png") class __ASSET__img_background4_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/background5.png") class __ASSET__img_background5_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/hero.png") class __ASSET__img_hero_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/intro-adventure.png") class __ASSET__img_intro_adventure_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/intro-epic.png") class __ASSET__img_intro_epic_png extends openfl.display.BitmapData {}

@@ -7,8 +7,7 @@ import com.ukuleledog.games.core.GameObject;
  * @author Matt
  */
 class Teleport extends GameObject
-{
-
+{	
 	public function new() 
 	{
 		super();

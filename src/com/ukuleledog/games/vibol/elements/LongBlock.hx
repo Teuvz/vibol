@@ -18,4 +18,9 @@ class LongBlock extends GameObject
 		this.graphics.endFill();
 	}
 	
+	override public function mustTestCollision( _x:Float, _y:Float ) : Bool
+	{
+		return true;
+	}
+	
 }

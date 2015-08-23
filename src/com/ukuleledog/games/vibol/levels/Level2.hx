@@ -51,47 +51,29 @@ class Level2 extends VibolLevel
 		frog2 = new Frog();
 		addEnnemy( frog2, 6, 10 );
 		frog2.setRoaming( 1, 'left' );
-		
-		block1 = new Block();
-		addElement( block1, 6, 19 );
-		
-		block2 = new Block();
-		addElement( block2, 6, 22 );
-		
-		block3 = new Block();
-		addElement( block3, 6, 26 );
-		
-		block4 = new Block();
-		addElement( block4, 5, 31 );
-		
-		block5 = new Block();
-		addElement( block5, 4, 36 );
-		
-		block6 = new Block();
-		addElement( block6, 4, 39 );
-		
-		block7 = new Block();
-		addElement( block7, 4, 42 );
-		block7.setMoving( 5, 42, 1 );
-		
-		block8 = new Block();
-		addElement( block8, 4, 45 );
-		block8.setMoving( 5, 45, 10 );
-		
-		floor2 = new LongBlock( 17 );
-		addElement( floor2, 7, 49 );
+				
+		block2 = new Block( 'block2' );
+		addElement( block2, 9, 23 );
+		block2.setMoving( 5, 22, 3 );
+			
+		floor2 = new LongBlock( 25 );
+		addElement( floor2, 7, 26 );
 		
 		frog3 = new Frog();
-		addEnnemy( frog3, 6, 52 );
+		addEnnemy( frog3, 6, 29 );
 		frog3.setRoaming( 1 );
 		
 		frog4 = new Frog();
-		addEnnemy( frog4, 6, 57 );
+		addEnnemy( frog4, 6, 34 );
 		frog4.setRoaming( 1, 'left' );
+		
+		frog4 = new Frog();
+		addEnnemy( frog4, 6, 39 );
+		frog4.setRoaming( 1 );
 		
 		endTeleport = new Teleport();
 		endTeleport.y = 64 * 5;
-		endTeleport.x = 64 * 64;
+		endTeleport.x = 64 * 50;
 		addChild( endTeleport );
 					
 		setHero( new Vibol() );

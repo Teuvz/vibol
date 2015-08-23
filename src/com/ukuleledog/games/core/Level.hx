@@ -1,5 +1,7 @@
 package com.ukuleledog.games.core;
 import com.ukuleledog.games.core.Hero;
+import motion.Actuate;
+import motion.easing.Bounce;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.filters.BitmapFilterType;
@@ -12,6 +14,7 @@ import openfl.geom.Point;
 class Level extends Sprite
 {
 
+	private var fightRoom:Bool = false;
 	private var playing:Bool = true;
 	private var elements:Array<GameObject>;
 	private var ennemies:Array<Ennemy>;
@@ -26,6 +29,9 @@ class Level extends Sprite
 	private var jumpPower:Int = 100;
 	private var jumpPeek:Int = 0;
 	private var gravity:Int = 1;
+	
+	private var hitting:Bool = false;
+	private var weapon:Weapon;
 	
 	public function new() 
 	{
@@ -135,7 +141,6 @@ class Level extends Sprite
 	
 	public function action()
 	{
-		
 	}
 	
 	public function loop( e:Event )
@@ -149,9 +154,37 @@ class Level extends Sprite
 		
 	}
 	
+	public function canHit() :Bool
+	{
+		return !hitting;
+	}
+	
 	public function manageEvent( _gameEvent:GameObject )
 	{
 		
+	}
+	
+	public function setWeapon( _weapon:Weapon )
+	{
+		weapon = _weapon;
+	}
+	
+	public function getWeapon() : Weapon
+	{
+		return weapon;
+	}
+	
+	private function positionWeapon()
+	{
+		if ( fightRoom && !hitting )
+		{
+			weapon.x = hero.x + 16;
+			weapon.y = hero.y + 16;
+		}
+	}
+	
+	public function animateWeapon()
+	{
 	}
 	
 }

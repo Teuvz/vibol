@@ -1,8 +1,11 @@
 package com.ukuleledog.games.vibol.levels;
 
 import com.ukuleledog.games.core.Level;
+import com.ukuleledog.games.vibol.elements.Sword;
 import com.ukuleledog.games.vibol.elements.Teleport;
+import haxe.Timer;
 import motion.Actuate;
+import motion.easing.Bounce;
 import motion.easing.Linear;
 import openfl.errors.Error;
 import openfl.events.Event;
@@ -14,7 +17,6 @@ import openfl.events.Event;
 class VibolLevel extends Level
 {
 
-	private var fightRoom:Bool = false;
 	private var endTeleport:Teleport;
 	private var fallingSpeed:Int = 1;
 	private var minFallingSpeed:Int = 1;
@@ -29,6 +31,9 @@ class VibolLevel extends Level
 	public function activateFighting()
 	{
 		fightRoom = true;
+		
+		weapon = new Sword();
+		
 	}
 	
 	override public function loop( e:Event )
@@ -41,7 +46,7 @@ class VibolLevel extends Level
 				
 		for ( element in elements )
 		{
-			if ( element.isColider() )
+			if ( element.isColider() && element.mustTestCollision(hero.x, hero.y)  )
 			{
 				
 				if ( element.hitTestObject( hero.getLeftBumper() ) )
@@ -63,6 +68,7 @@ class VibolLevel extends Level
 				{
 					onGround = true;					
 					fallingSpeed = minFallingSpeed;
+					hero.y = element.y - hero.height;
 				}
 			
 			}
@@ -90,19 +96,28 @@ class VibolLevel extends Level
 	
 		for ( ennemy in ennemies )
 		{
-			if ( ennemy.hitTestObject( hero ) )
+			if ( ennemy.mustTestCollision(hero.x, hero.y) && ennemy.hitTestObject( hero )  )
 			{
 				hero.x = startingPosition.x * 64;
 				hero.y = startingPosition.y * 64;
 				
 				Actuate.tween( this, 1, { x: 0 } ).ease( Linear.easeNone );
 			}
-			ennemy.roam();
+			
+			if ( hitting && ennemy.mustTestCollision(hero.x, hero.y) && ennemy.hitTestObject( weapon ) )
+			{
+				removeChild( ennemy );
+				ennemies.remove( ennemy );
+				ennemy = null;
+			}
+			
+			if ( ennemy != null )
+				ennemy.roam();
 		}
 	
 		for ( collectible in collectibles )
 		{
-			if ( collectible.hitTestObject( hero ) )
+			if ( collectible.mustTestCollision(hero.x, hero.y) && collectible.hitTestObject( hero ) )
 			{
 				removeChild( collectible );
 				collectibles.remove( collectible );
@@ -112,7 +127,7 @@ class VibolLevel extends Level
 		
 		for ( gameEvent in gameEvents )
 		{
-			if ( gameEvent.hitTestObject( hero ) )
+			if ( gameEvent.hitTestObject( hero ) && gameEvent.mustTestCollision(hero.x, hero.y) )
 			{
 				removeChild( gameEvent );
 				gameEvents.remove( gameEvent );
@@ -120,10 +135,12 @@ class VibolLevel extends Level
 			}
 		}
 	
-		if ( endTeleport != null && endTeleport.hitTestObject( hero ) )
+		if ( endTeleport != null && endTeleport.mustTestCollision(hero.x, hero.y) && endTeleport.hitTestObject( hero ) )
 		{
 			dispatchEvent( new Event( Event.COMPLETE ) );
 		}
+		
+		positionWeapon();
 	}
 	
 	override public function jump()
@@ -142,10 +159,25 @@ class VibolLevel extends Level
 	
 	override public function action()
 	{
-		if ( fightRoom )
+		if ( fightRoom && canHit() )
 		{
-			trace( 'hello' );
+			animateWeapon();			
 		}
+	}
+	
+	override public function animateWeapon()
+	{
+		hitting = true;
+		positionWeapon();
+		addChild( weapon );
+		var endPosition:Float = hero.x + 64;
+		var startPosition: Float = hero.x + 16;
+		Actuate.tween( weapon, 0.1, { alpha: 1, x: endPosition } ).ease( Bounce.easeOut ).onComplete( function() {
+			Actuate.tween( weapon, 0.1, { x: startPosition, alpha: 0 } ).ease( Bounce.easeOut ).onComplete( function() {
+				hitting = false;
+				removeChild( weapon );
+			});
+		});
 	}
 	
 }
