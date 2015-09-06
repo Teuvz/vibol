@@ -3,6 +3,8 @@ package com.ukuleledog.games.vibol.enemies;
 import com.ukuleledog.games.core.Ennemy;
 import motion.Actuate;
 import motion.easing.Linear;
+import openfl.Assets;
+import openfl.display.BitmapData;
 
 /**
  * ...
@@ -17,7 +19,11 @@ class Frog extends Ennemy
 	public function new( moving:Bool = true ) 
 	{
 		super();
-		this.graphics.beginFill(0x00FF00);
+		
+		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/frog.png' );
+		this.graphics.beginBitmapFill( imageData );
+		
+		//this.graphics.beginFill(0x00FF00);
 		this.graphics.drawRect( 0, 0, 64, 64 );
 		this.graphics.endFill();
 		

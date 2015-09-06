@@ -104,11 +104,16 @@ class VibolLevel extends Level
 				Actuate.tween( this, 1, { x: 0 } ).ease( Linear.easeNone );
 			}
 			
-			if ( hitting && ennemy.mustTestCollision(hero.x, hero.y) && ennemy.hitTestObject( weapon ) )
+			if ( hitting && ennemy.mustTestCollision(hero.x, hero.y) && ennemy.isTouchable() == true && ennemy.hitTestObject( weapon ) )
 			{
-				removeChild( ennemy );
-				ennemies.remove( ennemy );
-				ennemy = null;
+				ennemy.decreaseHealth();
+				
+				if ( ennemy.getHealth() <= 0 )
+				{
+					removeChild( ennemy );
+					ennemies.remove( ennemy );
+					ennemy = null;
+				}
 			}
 			
 			if ( ennemy != null )
@@ -159,7 +164,7 @@ class VibolLevel extends Level
 	
 	override public function action()
 	{
-		if ( fightRoom && canHit() )
+		if ( fightRoom && canHit() && playing )
 		{
 			animateWeapon();			
 		}
@@ -178,6 +183,11 @@ class VibolLevel extends Level
 				removeChild( weapon );
 			});
 		});
+	}
+	
+	override public function start()
+	{
+		setCamera();
 	}
 	
 }

@@ -46,8 +46,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("img/background.png", __ASSET__img_background_png);
 		type.set ("img/background.png", AssetType.IMAGE);
-		className.set ("img/background.psd", __ASSET__img_background_psd);
-		type.set ("img/background.psd", AssetType.BINARY);
 		className.set ("img/background2.png", __ASSET__img_background2_png);
 		type.set ("img/background2.png", AssetType.IMAGE);
 		className.set ("img/background3.png", __ASSET__img_background3_png);
@@ -76,6 +74,24 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/introbg1.png", AssetType.IMAGE);
 		className.set ("img/introbg2.png", __ASSET__img_introbg2_png);
 		type.set ("img/introbg2.png", AssetType.IMAGE);
+		className.set ("img/sprite/block.png", __ASSET__img_sprite_block_png);
+		type.set ("img/sprite/block.png", AssetType.IMAGE);
+		className.set ("img/sprite/boss.png", __ASSET__img_sprite_boss_png);
+		type.set ("img/sprite/boss.png", AssetType.IMAGE);
+		className.set ("img/sprite/coin.png", __ASSET__img_sprite_coin_png);
+		type.set ("img/sprite/coin.png", AssetType.IMAGE);
+		className.set ("img/sprite/frog.png", __ASSET__img_sprite_frog_png);
+		type.set ("img/sprite/frog.png", AssetType.IMAGE);
+		className.set ("img/sprite/longblock.png", __ASSET__img_sprite_longblock_png);
+		type.set ("img/sprite/longblock.png", AssetType.IMAGE);
+		className.set ("img/sprite/orc.png", __ASSET__img_sprite_orc_png);
+		type.set ("img/sprite/orc.png", AssetType.IMAGE);
+		className.set ("img/sprite/schroom.png", __ASSET__img_sprite_schroom_png);
+		type.set ("img/sprite/schroom.png", AssetType.IMAGE);
+		className.set ("img/sprite/sword.png", __ASSET__img_sprite_sword_png);
+		type.set ("img/sprite/sword.png", AssetType.IMAGE);
+		className.set ("img/sprite/vibol.png", __ASSET__img_sprite_vibol_png);
+		type.set ("img/sprite/vibol.png", AssetType.IMAGE);
 		className.set ("font/MTF Epic.ttf", __ASSET__font_mtf_epic_ttf);
 		type.set ("font/MTF Epic.ttf", AssetType.FONT);
 		
@@ -87,10 +103,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
-		id = "img/background.psd";
-		path.set (id, id);
-		
-		type.set (id, AssetType.BINARY);
 		id = "img/background2.png";
 		path.set (id, id);
 		
@@ -147,6 +159,42 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/block.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/boss.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/coin.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/frog.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/longblock.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/orc.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/schroom.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/sword.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/sprite/vibol.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "font/MTF Epic.ttf";
 		className.set (id, __ASSET__font_mtf_epic_ttf);
 		
@@ -156,6 +204,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#else
 		
 		#if openfl
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -183,9 +239,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("img/background.png", __ASSET__img_background_png);
 		type.set ("img/background.png", AssetType.IMAGE);
-		
-		className.set ("img/background.psd", __ASSET__img_background_psd);
-		type.set ("img/background.psd", AssetType.BINARY);
 		
 		className.set ("img/background2.png", __ASSET__img_background2_png);
 		type.set ("img/background2.png", AssetType.IMAGE);
@@ -228,6 +281,33 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("img/introbg2.png", __ASSET__img_introbg2_png);
 		type.set ("img/introbg2.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/block.png", __ASSET__img_sprite_block_png);
+		type.set ("img/sprite/block.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/boss.png", __ASSET__img_sprite_boss_png);
+		type.set ("img/sprite/boss.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/coin.png", __ASSET__img_sprite_coin_png);
+		type.set ("img/sprite/coin.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/frog.png", __ASSET__img_sprite_frog_png);
+		type.set ("img/sprite/frog.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/longblock.png", __ASSET__img_sprite_longblock_png);
+		type.set ("img/sprite/longblock.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/orc.png", __ASSET__img_sprite_orc_png);
+		type.set ("img/sprite/orc.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/schroom.png", __ASSET__img_sprite_schroom_png);
+		type.set ("img/sprite/schroom.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/sword.png", __ASSET__img_sprite_sword_png);
+		type.set ("img/sprite/sword.png", AssetType.IMAGE);
+		
+		className.set ("img/sprite/vibol.png", __ASSET__img_sprite_vibol_png);
+		type.set ("img/sprite/vibol.png", AssetType.IMAGE);
 		
 		className.set ("font/MTF Epic.ttf", __ASSET__font_mtf_epic_ttf);
 		type.set ("font/MTF Epic.ttf", AssetType.FONT);
@@ -806,7 +886,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if flash
 
 @:keep @:bind #if display private #end class __ASSET__img_background_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__img_background_psd extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__img_background2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_background3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_background4_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -821,12 +900,29 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__img_intro2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_introbg1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_introbg2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_block_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_boss_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_coin_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_frog_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_longblock_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_orc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_schroom_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_sword_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_sprite_vibol_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__font_mtf_epic_ttf extends flash.text.Font { }
 
 
 #elseif html5
 
 #if openfl
+
+
+
+
+
+
+
+
 
 
 
@@ -858,7 +954,6 @@ class __ASSET__font_mtf_epic_ttf extends openfl.text.Font { public function new 
 
 //
 //@:bitmap("assets/img/background.png") class __ASSET__img_background_png extends openfl.display.BitmapData {}
-//@:file("assets/img/background.psd") class __ASSET__img_background_psd extends lime.utils.ByteArray {}
 //@:bitmap("assets/img/background2.png") class __ASSET__img_background2_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/background3.png") class __ASSET__img_background3_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/background4.png") class __ASSET__img_background4_png extends openfl.display.BitmapData {}
@@ -873,6 +968,15 @@ class __ASSET__font_mtf_epic_ttf extends openfl.text.Font { public function new 
 //@:bitmap("assets/img/intro2.png") class __ASSET__img_intro2_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/introbg1.png") class __ASSET__img_introbg1_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/img/introbg2.png") class __ASSET__img_introbg2_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/block.png") class __ASSET__img_sprite_block_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/boss.png") class __ASSET__img_sprite_boss_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/coin.png") class __ASSET__img_sprite_coin_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/frog.png") class __ASSET__img_sprite_frog_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/longblock.png") class __ASSET__img_sprite_longblock_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/orc.png") class __ASSET__img_sprite_orc_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/schroom.png") class __ASSET__img_sprite_schroom_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/sword.png") class __ASSET__img_sprite_sword_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/img/sprite/vibol.png") class __ASSET__img_sprite_vibol_png extends openfl.display.BitmapData {}
 //@:font("assets/font/MTF Epic.ttf") class __ASSET__font_mtf_epic_ttf extends openfl.text.Font {}
 //
 //

@@ -5,6 +5,7 @@ import motion.Actuate;
 import motion.easing.Bounce;
 import motion.easing.Linear;
 import openfl.Assets;
+import openfl.display.BitmapData;
 
 /**
  * ...
@@ -17,7 +18,10 @@ class Vibol extends Hero
 	{
 		super();
 		
-		this.graphics.beginBitmapFill( Assets.getBitmapData('img/hero.png') );
+		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/vibol.png' );
+		this.graphics.beginBitmapFill( imageData );
+		
+		//this.graphics.beginBitmapFill( Assets.getBitmapData('img/hero.png') );
 		this.graphics.drawRect( 0, 0, 64, 64 );
 		this.graphics.endFill();
 		

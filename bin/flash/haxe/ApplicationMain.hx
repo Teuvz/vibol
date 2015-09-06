@@ -31,10 +31,6 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
-		urls.push ("img/background.psd");
-		types.push (AssetType.BINARY);
-		
-		
 		urls.push ("img/background2.png");
 		types.push (AssetType.IMAGE);
 		
@@ -88,6 +84,42 @@ class ApplicationMain {
 		
 		
 		urls.push ("img/introbg2.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/block.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/boss.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/coin.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/frog.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/longblock.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/orc.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/schroom.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/sword.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/vibol.png");
 		types.push (AssetType.IMAGE);
 		
 		

@@ -8,6 +8,7 @@ import com.ukuleledog.games.vibol.elements.LongBlock;
 import com.ukuleledog.games.vibol.elements.Teleport;
 import com.ukuleledog.games.vibol.elements.Vibol;
 import com.ukuleledog.games.vibol.enemies.Frog;
+import com.ukuleledog.games.vibol.enemies.Orc;
 import com.ukuleledog.games.vibol.enemies.Schroom;
 import motion.Actuate;
 import openfl.Assets;
@@ -37,6 +38,7 @@ class Level4 extends VibolLevel
 	private var frog3:Frog;
 	private var frog4:Frog;
 	private var frog5:Frog;
+	private var orc1:Orc;
 	
 	public function new() 
 	{
@@ -83,24 +85,20 @@ class Level4 extends VibolLevel
 		floor2 = new LongBlock( 17 );
 		addElement( floor2, 7, 50 );
 		
-		frog3 = new Frog();
-		addEnnemy( frog3, 6, 52 );
-		frog3.setRoaming( 1 );
-		
-		frog4 = new Frog();
-		addEnnemy( frog4, 6, 57 );
-		frog4.setRoaming( 1, 'left' );
-		
+		orc1 = new Orc();
+		addEnnemy( orc1, 6, 55 );
+		orc1.setRoaming(1);
+				
 		frog5 = new Frog( false );
-		addEnnemy( frog5, 3, 40 );
+		addEnnemy( frog5, 3, 40 );		
 		
 		endTeleport = new Teleport();
 		endTeleport.y = 64 * 5;
 		endTeleport.x = 64 * 64;
 		addChild( endTeleport );
 					
-		setHero( new Vibol() );
 		startingPosition = new Point(1, 6);
+		setHero( new Vibol() );
 		
 		var thing:BitmapData = Assets.getBitmapData('img/background4.png');
 		this.graphics.beginBitmapFill( thing );

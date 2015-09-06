@@ -1,6 +1,8 @@
 package com.ukuleledog.games.vibol.elements;
 
 import com.ukuleledog.games.core.Weapon;
+import openfl.Assets;
+import openfl.display.BitmapData;
 
 /**
  * ...
@@ -13,7 +15,10 @@ class Sword extends Weapon
 	{
 		super();
 		
-		this.graphics.beginFill(0x800080);
+		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/sword.png' );
+		this.graphics.beginBitmapFill( imageData );
+		
+		//this.graphics.beginFill(0x800080);
 		this.graphics.drawRect( 0, 0, 64, 32 );
 		this.graphics.endFill();
 	}

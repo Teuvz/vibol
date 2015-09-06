@@ -1,5 +1,6 @@
 package com.ukuleledog.games.core;
 import com.ukuleledog.games.core.Hero;
+import com.ukuleledog.games.vibol.elements.GameEvent;
 import motion.Actuate;
 import motion.easing.Bounce;
 import openfl.display.Sprite;
@@ -20,7 +21,7 @@ class Level extends Sprite
 	private var ennemies:Array<Ennemy>;
 	private var collectibles:Array<GameObject>;
 	private var movingElements:Array<GameObject>;
-	private var gameEvents:Array<GameObject>;
+	private var gameEvents:Array<GameEvent>;
 	private var hero:Hero;
 	private var startingPosition:Point;
 	
@@ -40,7 +41,7 @@ class Level extends Sprite
 		ennemies = new Array<Ennemy>();
 		collectibles = new Array<GameObject>();
 		movingElements = new Array<GameObject>();
-		gameEvents = new Array<GameObject>();
+		gameEvents = new Array<GameEvent>();
 	}
 	
 	public function init()
@@ -79,7 +80,7 @@ class Level extends Sprite
 		addChild( _collectible );
 	}
 	
-	public function addGameEvent( _gameEvent:GameObject, _y:Int = 0, _x:Int = 0 )
+	public function addGameEvent( _gameEvent:GameEvent, _y:Int = 0, _x:Int = 0 )
 	{
 		_gameEvent.x = 64 * _x;
 		_gameEvent.y = 64 * _y;
@@ -159,7 +160,7 @@ class Level extends Sprite
 		return !hitting;
 	}
 	
-	public function manageEvent( _gameEvent:GameObject )
+	public function manageEvent( _gameEvent:GameEvent)
 	{
 		
 	}
@@ -184,6 +185,10 @@ class Level extends Sprite
 	}
 	
 	public function animateWeapon()
+	{
+	}
+	
+	public function start()
 	{
 	}
 	

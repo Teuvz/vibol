@@ -55,24 +55,21 @@ class Level3 extends VibolLevel
 	}
 	
 	//x = 224
-	override public function manageEvent( _gameEvent:GameObject )
+	override public function manageEvent( _gameEvent:GameEvent )
 	{
 
-		if ( _gameEvent == event )
-		{
-			playing = false;
-			Actuate.tween( hero, 1, { x: 3.5 * 64, y: 5 * 64 } ).onComplete( function() {
-				Actuate.tween( this, 5, { scaleX: 1.5, scaleY: 1.5, x: -128, y: -192 } ).ease( Linear.easeNone ).onComplete( function() {
-					Actuate.tween( this, 5, { scaleX: 1, scaleY: 1, x:0, y:0 } ).ease( Linear.easeNone ).onComplete( function() {
-						Actuate.tween( hero, 3, { x: 64 * 7 } ).ease( Linear.easeNone ).onComplete( function() {
-							Actuate.tween( this, 1, { alpha: 0 } ).onComplete( function() {
-								dispatchEvent( new Event( Event.COMPLETE ) );
-							});
+		playing = false;
+		Actuate.tween( hero, 1, { x: 3.5 * 64, y: 5 * 64 } ).onComplete( function() {
+			Actuate.tween( this, 5, { scaleX: 1.5, scaleY: 1.5, x: -128, y: -192 } ).ease( Linear.easeNone ).onComplete( function() {
+				Actuate.tween( this, 5, { scaleX: 1, scaleY: 1, x:0, y:0 } ).ease( Linear.easeNone ).onComplete( function() {
+					Actuate.tween( hero, 3, { x: 64 * 7 } ).ease( Linear.easeNone ).onComplete( function() {
+						Actuate.tween( this, 1, { alpha: 0 } ).onComplete( function() {
+							dispatchEvent( new Event( Event.COMPLETE ) );
 						});
-					}).delay(10);
-				});
+					});
+				}).delay(10);
 			});
-		}
+		});
 		
 	}
 	

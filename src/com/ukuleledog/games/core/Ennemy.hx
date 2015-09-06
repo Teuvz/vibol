@@ -1,6 +1,9 @@
 package com.ukuleledog.games.core ;
 
 import com.ukuleledog.games.core.AnimatedObject;
+import haxe.Timer;
+import lime.app.Event;
+import flash.events.Event;
 
 /**
  * ...
@@ -8,7 +11,9 @@ import com.ukuleledog.games.core.AnimatedObject;
  */
 class Ennemy extends AnimatedObject
 {
-
+	private var health:Int = 1;
+	private var untouchable:Bool = false;
+	
 	//private var speed:Int = 5;
 	private var roaming:Bool = false;
 	private var roamingDistance:Int;
@@ -60,6 +65,44 @@ class Ennemy extends AnimatedObject
 			}
 			
 		}
+	}
+	
+	public function getHealth() : Int
+	{
+		return health;
+	}
+	
+	public function setHealth( health:Int )
+	{
+		this.health = health;
+	}
+	
+	public function isTouchable() : Bool
+	{
+		return !untouchable;
+	}
+	
+	public function decreaseHealth()
+	{
+		--health;
+		
+		untouchable = true;
+		addEventListener( Event.ENTER_FRAME, flash );
+		
+		Timer.delay( function() {
+			untouchable = false;
+			removeEventListener( Event.ENTER_FRAME, flash );
+			alpha = 1;
+		}, 2000 );
+		
+	}
+	
+	private function flash( e:Event )
+	{
+		if ( alpha == 1 )
+			alpha = 0.6;
+		else
+			alpha = 1;
 	}
 	
 }

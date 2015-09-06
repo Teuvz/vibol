@@ -8,12 +8,18 @@ import com.ukuleledog.games.core.GameObject;
 class GameEvent extends GameObject
 {
 
-	public function new() 
+	private var _name:String;
+	
+	public function new( name:String = null ) 
 	{
 		super();
-		this.graphics.beginFill( 0x00FF00 );
-		this.graphics.drawRect( 0, 0, 128, 128 );
-		this.graphics.endFill();
+		this.graphics.drawRect( 0, 0, 128, 128 );		
+		_name = name;
+	}
+	
+	public function getName():String
+	{
+		return _name;
 	}
 	
 }

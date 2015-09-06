@@ -35,7 +35,7 @@ class GameState extends State
 		addEventListener( Event.ADDED_TO_STAGE, init );
 		
 		keysPressed = new Array<Bool>();
-		level = new Level5();
+		level = new Level1();
 	}
 	
 	private function init( e:Event )
@@ -44,6 +44,7 @@ class GameState extends State
 		
 		level.addEventListener( Event.COMPLETE, changeLevel );
 		addChild( level );
+		level.start();
 
 		stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler );
 		stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler );
@@ -86,6 +87,7 @@ class GameState extends State
 	{
 		addEventListener( Event.ENTER_FRAME, loop );
 		level.addEventListener( Event.COMPLETE, changeLevel );
+		level.start();
 	}
 	
 	private function loop( e:Event )
