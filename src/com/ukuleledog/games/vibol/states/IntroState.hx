@@ -41,6 +41,8 @@ class IntroState extends State
 	private var textTimer:Timer;
 	private var storyStep = 0;
 	
+	private var spaceCounter = 0;
+	
 	public function new() 
 	{
 		super();
@@ -99,9 +101,10 @@ class IntroState extends State
 		addChild( adventure );
 		
 		startTextField.defaultTextFormat = defaultFormat;
+		startTextField.textColor = 0x000000;
 		startTextField.width = stage.stageWidth;
-		startTextField.y = 450;
-		startTextField.text = "Press space to start";
+		startTextField.y = 480;
+		startTextField.text = "Appuyez sur espace pour commencer";
 		startTextField.visible = false;
 		addChild( startTextField );
 		
@@ -110,6 +113,7 @@ class IntroState extends State
 		storyTextField1.y = 20;
 		storyTextField1.multiline = true;
 		storyTextField1.text = "Legend says a young man will one day\n remove the holy sword from the stone.";
+		storyTextField1.text = "Une légende raconte qu'un jeune homme\n retirera l'épée sacrée du rocher.";
 		storyTextField1.alpha = 0;
 		addChild( storyTextField1 );
 		
@@ -118,6 +122,7 @@ class IntroState extends State
 		storyTextField2.y = 80;
 		storyTextField2.multiline = true;
 		storyTextField2.text = "It will grant him great powers and charm,\n making him King upon all lands.";
+		storyTextField2.text = "Elle lui procurera de grands pouvoirs\n et du charme, faisant de lui un Roi.";
 		storyTextField2.alpha = 0;
 		addChild( storyTextField2 );
 		
@@ -126,6 +131,7 @@ class IntroState extends State
 		storyTextField3.y = 150;
 		storyTextField3.multiline = true;
 		storyTextField3.text = "This is the story of the kid who\n became that man.";
+		storyTextField3.text = "Ceci est l'histoire de Vibol\n l'enfant qui deviendra cet homme.";
 		storyTextField3.alpha = 0;
 		addChild( storyTextField3 );
 		
@@ -135,11 +141,16 @@ class IntroState extends State
 	private function startAnimation()
 	{
 		Actuate.tween( intro2, 2, { alpha: 1 } ).onComplete( function() {
+			Assets.getSound('snd/metal-bang.mp3').play();
 			Actuate.tween( supert, 1, { x:0 } ).ease( Bounce.easeOut ).onComplete( function() {
+				Assets.getSound('snd/metal-bang.mp3').play();
 				Actuate.tween( epic, 1, { x:0 } ).ease( Bounce.easeOut ).onComplete( function() {
+					Assets.getSound('snd/metal-bang.mp3').play();
 					Actuate.tween( vibol, 1, { x:0 } ).ease( Bounce.easeOut ).onComplete( function() {
+						Assets.getSound('snd/metal-bang.mp3').play();
 						Actuate.tween( quest, 1, { x:0 } ).ease( Bounce.easeOut ).onComplete( function() {
-							Actuate.tween( adventure, 3, { x:0, alpha: 1, scaleX: 1, scaleY: 1 } ).ease( Linear.easeNone ).onComplete( endAnimation );
+							Assets.getSound('snd/victory.mp3').play();
+							Actuate.tween( adventure, 5, { x:0, alpha: 1, scaleX: 1, scaleY: 1 } ).ease( Linear.easeNone ).onComplete( endAnimation );
 						});
 					});
 				});
@@ -171,6 +182,7 @@ class IntroState extends State
 	{
 		if ( e.keyCode == Keyboard.SPACE )
 		{
+			Assets.getSound('snd/intro-correct.mp3').play();
 			stage.removeEventListener( KeyboardEvent.KEY_DOWN, startStory);
 			startTextField.visible = false;
 			textTimer.stop();
@@ -186,6 +198,7 @@ class IntroState extends State
 				introTimer.removeEventListener( TimerEvent.TIMER, introLoop );
 				
 				Actuate.tween( intro2, 2, { alpha:0 } ).onComplete( function() {
+					
 					Actuate.tween( storyTextField1, 3, { alpha: 1 } ).onComplete( function() {
 						Actuate.tween( storyTextField2, 3, { alpha: 1 } ).onComplete( function() {
 							Actuate.tween( storyTextField3, 5, { alpha: 1 } ).onComplete( function() {
@@ -202,6 +215,37 @@ class IntroState extends State
 				});
 			});
 
+		}
+		else
+		{
+			Assets.getSound('snd/intro-wrong.mp3').play();
+			switch( spaceCounter )
+			{
+				case 0:
+					startTextField.text = "J'ai dis ESPACE pour commencer.";
+				case 1:
+					startTextField.text = "Pulsar la barra espaciadora para empezar.";
+				case 2:
+					startTextField.text = "La barre espace est la longue en bas.";
+				case 3:
+					startTextField.text = "Vous lisez ce texte ?";
+				case 4:
+					startTextField.text = "Dites le tout de suite si vous ne voulez pas jouer.";
+				case 5:
+					startTextField.text = "Ce jeu est nul de toute façon.";
+				case 6:
+					startTextField.text = "Joyeux anniversaire Vibol !";
+				case 7:
+					startTextField.text = "Prout prout prout";
+				case 8:
+					startTextField.text = "...";
+				case 9:
+					startTextField.text = "Appuyez sur espace pour commencer";
+			}
+			spaceCounter++;
+			
+			if ( spaceCounter > 9 )
+				spaceCounter = 0;
 		}
 	}
 	

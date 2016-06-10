@@ -125,6 +125,17 @@ class Level extends Sprite
 		setCamera();
 	}
 	
+	public function setWalking()
+	{
+		hero.setAnimation('walk');
+	}
+	
+	public function setIdle()
+	{
+		if ( hero.getAnimation() == 'walk' )
+			hero.setAnimation('idle');
+	}
+	
 	public function moveUp()
 	{
 		hero.y -= hero.getSpeed();
@@ -190,6 +201,11 @@ class Level extends Sprite
 	
 	public function start()
 	{
+	}
+	
+	public function isPlaying() : Bool
+	{
+		return playing;
 	}
 	
 }

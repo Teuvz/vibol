@@ -5,10 +5,14 @@ import com.ukuleledog.games.vibol.elements.Sword;
 import com.ukuleledog.games.vibol.elements.Teleport;
 import haxe.Timer;
 import motion.Actuate;
+import openfl.Assets;
 import motion.easing.Bounce;
 import motion.easing.Linear;
+import openfl.display.Bitmap;
+import openfl.display.BitmapData;
 import openfl.errors.Error;
 import openfl.events.Event;
+import openfl.media.SoundChannel;
 
 /**
  * ...
@@ -17,14 +21,43 @@ import openfl.events.Event;
 class VibolLevel extends Level
 {
 
+	private var startScreen:Bitmap;
 	private var endTeleport:Teleport;
 	private var fallingSpeed:Int = 1;
 	private var minFallingSpeed:Int = 1;
 	private var maxFallingSpeed:Int = 5;
 	
-	public function new() 
+	private var music:SoundChannel;
+	
+	public function new( _startScreen:BitmapData = null ) 
 	{
 		super();
+		playing = false;
+		
+		if ( _startScreen != null )
+		{
+			startScreen = new Bitmap( _startScreen );
+			addEventListener( Event.ADDED_TO_STAGE, startScreenDisplay );
+		}
+		else
+		{
+			init();
+			playing = true;
+		}
+		
+	}
+	
+	private function startScreenDisplay( e )
+	{
+		removeEventListener( Event.ADDED_TO_STAGE, startScreenDisplay );
+		
+		stage.addChild( startScreen );
+		
+		Actuate.tween( startScreen, 0.5, { alpha: 0 }, true ).delay(10).onComplete( function() {
+			init();
+			stage.removeChild( startScreen );
+			playing = true;
+		});
 		
 	}
 	
@@ -98,6 +131,9 @@ class VibolLevel extends Level
 		{
 			if ( ennemy.mustTestCollision(hero.x, hero.y) && ennemy.hitTestObject( hero )  )
 			{
+				
+				Assets.getSound('snd/die.mp3').play();
+				
 				hero.x = startingPosition.x * 64;
 				hero.y = startingPosition.y * 64;
 				
@@ -110,6 +146,9 @@ class VibolLevel extends Level
 				
 				if ( ennemy.getHealth() <= 0 )
 				{
+					
+					Assets.getSound('snd/kill.mp3').play();
+					
 					removeChild( ennemy );
 					ennemies.remove( ennemy );
 					ennemy = null;
@@ -150,10 +189,11 @@ class VibolLevel extends Level
 	
 	override public function jump()
 	{				
-		if ( !jumping && onGround )
+		if ( playing && !jumping && onGround )
 		{
 			jumping = true;
 			Actuate.tween( hero, 1, { y: hero.y - jumpPower } ).onComplete( endJump );
+			Assets.getSound('snd/jump.mp3').play();
 		}
 	}
 	
@@ -177,6 +217,7 @@ class VibolLevel extends Level
 		addChild( weapon );
 		var endPosition:Float = hero.x + 64;
 		var startPosition: Float = hero.x + 16;
+		Assets.getSound('snd/sword.mp3').play();
 		Actuate.tween( weapon, 0.1, { alpha: 1, x: endPosition } ).ease( Bounce.easeOut ).onComplete( function() {
 			Actuate.tween( weapon, 0.1, { x: startPosition, alpha: 0 } ).ease( Bounce.easeOut ).onComplete( function() {
 				hitting = false;
@@ -188,6 +229,9 @@ class VibolLevel extends Level
 	override public function start()
 	{
 		setCamera();
+		
+		//music = Assets.getSound( 'snd/Skye_Cuillin_converted.mp3' ).play();
+		
 	}
 	
 }

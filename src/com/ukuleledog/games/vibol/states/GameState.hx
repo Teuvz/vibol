@@ -17,6 +17,7 @@ import openfl.errors.Error;
 import openfl.events.Event;
 import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
+import openfl.events.JoystickEvent;
 
 /**
  * ...
@@ -35,12 +36,13 @@ class GameState extends State
 		addEventListener( Event.ADDED_TO_STAGE, init );
 		
 		keysPressed = new Array<Bool>();
-		level = new Level1();
+		level = new Level5();
 	}
 	
-	private function init( e:Event )
+	private function init( e:Event = null )
 	{
-		removeEventListener( Event.ADDED_TO_STAGE, init );
+		if ( e != null )
+			removeEventListener( Event.ADDED_TO_STAGE, init );
 		
 		level.addEventListener( Event.COMPLETE, changeLevel );
 		addChild( level );
@@ -49,6 +51,19 @@ class GameState extends State
 		stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler );
 		stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler );
 		addEventListener( Event.ENTER_FRAME, loop );
+		
+		addEventListener( JoystickEvent.BUTTON_DOWN, joystickButton );
+		stage.addEventListener( JoystickEvent.AXIS_MOVE, joystickAxis );
+	}
+	
+	private function joystickButton( e:JoystickEvent )
+	{
+		trace( e );
+	}
+	
+	private function joystickAxis( e:JoystickEvent )
+	{
+		
 	}
 	
 	private function changeLevel( e:Event )
@@ -76,6 +91,7 @@ class GameState extends State
 				level = new Level4();
 			case 5:
 				level = new Level5();
+				level.addEventListener( Event.CLOSE, gameEnd );
 		}
 		
 		addChild( level );
@@ -93,13 +109,25 @@ class GameState extends State
 	private function loop( e:Event )
 	{
 		
+		if ( !level.isPlaying() )
+		{
+			level.setIdle();
+			return;
+		}
+		
 		if ( keysPressed[Keyboard.RIGHT] == true )
 		{
+			level.setWalking();
 			level.moveRight();
 		}
 		else if ( keysPressed[Keyboard.LEFT] == true )
 		{
+			level.setWalking();
 			level.moveLeft();
+		}
+		else
+		{
+			level.setIdle();
 		}
 		
 		if ( keysPressed[Keyboard.A] == true && level.canJump() )
@@ -124,6 +152,17 @@ class GameState extends State
 	private function keyUpHandler( e:KeyboardEvent )
 	{
 		keysPressed[e.keyCode] = false;
+	}
+	
+	private function gameEnd( e )
+	{
+		level.removeEventListener( Event.CLOSE, gameEnd );
+		
+		removeEventListener( Event.ENTER_FRAME, loop );
+		removeChild( level );
+		level = null;
+		
+		dispatchEvent( new Event( Event.COMPLETE ) );
 	}
 	
 }

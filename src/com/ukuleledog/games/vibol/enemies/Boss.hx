@@ -18,12 +18,12 @@ class Boss extends Ennemy
 		health = 20;
 		speed = 1;
 		
-		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/boss.png' );
-		this.graphics.beginBitmapFill( imageData );
+		bmd = Assets.getBitmapData( 'img/sprite/boss.png' );
 		
-		//this.graphics.beginFill(0x00FF00);
-		this.graphics.drawRect( 0, 0, 256, 256 );
-		this.graphics.endFill();
+		createAnimation( 'idle', 0, 0, 1, 256, 256 );
+		createAnimation( 'shout', 256, 0, 1, 256, 256 );
+		
+		animate();
 	}
 	
 }

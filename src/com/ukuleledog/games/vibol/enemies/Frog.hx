@@ -4,6 +4,7 @@ import com.ukuleledog.games.core.Ennemy;
 import motion.Actuate;
 import motion.easing.Linear;
 import openfl.Assets;
+import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 
 /**
@@ -18,14 +19,20 @@ class Frog extends Ennemy
 	
 	public function new( moving:Bool = true ) 
 	{
-		super();
+		super( Assets.getBitmapData( 'img/sprite/frog.png' ) );
 		
-		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/frog.png' );
-		this.graphics.beginBitmapFill( imageData );
+		/*var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/frog.png' );
+		var imageBmp:Bitmap = new Bitmap( imageData );
+
+		this.width = imageBmp.width;
+		this.height = imageBmp.height;
+		this.addChild( imageBmp );*/
+		
+		//this.graphics.beginBitmapFill( imageData );
 		
 		//this.graphics.beginFill(0x00FF00);
-		this.graphics.drawRect( 0, 0, 64, 64 );
-		this.graphics.endFill();
+		//this.graphics.drawRect( 0, 0, 64, 64 );
+		//this.graphics.endFill();
 		
 		canJump = moving;
 	}
@@ -50,6 +57,7 @@ class Frog extends Ennemy
 				roamingDirection = 'left';
 			}
 			
+			Assets.getSound('snd/jump.mp3').play();
 			Actuate.tween( this, 0.8, { y: originalY - 32, x:targetX } ).ease( Linear.easeNone ).onComplete( jumpReturn );
 			
 		}

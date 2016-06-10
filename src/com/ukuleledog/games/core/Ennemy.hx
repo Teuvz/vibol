@@ -2,8 +2,9 @@ package com.ukuleledog.games.core ;
 
 import com.ukuleledog.games.core.AnimatedObject;
 import haxe.Timer;
-import lime.app.Event;
 import flash.events.Event;
+import openfl.display.Bitmap;
+import openfl.display.BitmapData;
 
 /**
  * ...
@@ -21,10 +22,20 @@ class Ennemy extends AnimatedObject
 	private var roamingMaxRight:Float;
 	private var roamingDirection:String = 'right';
 	
-	public function new() 
+	public function new( imageData:BitmapData = null ) 
 	{
 		super();
 		speed = 5;
+
+		if ( imageData != null )
+		{
+			var imageBmp:Bitmap = new Bitmap( imageData );
+			this.addChild( imageBmp );
+		}
+		
+		// debug
+		//this.graphics.lineStyle( 1, 0xFF0000 );
+		//this.graphics.drawRect( 0, 0, this.width, this.height);
 	}
 	
 	public function setRoaming( block:UInt, _direction:String = 'right' )

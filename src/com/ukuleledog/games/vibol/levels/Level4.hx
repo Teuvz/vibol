@@ -12,6 +12,7 @@ import com.ukuleledog.games.vibol.enemies.Orc;
 import com.ukuleledog.games.vibol.enemies.Schroom;
 import motion.Actuate;
 import openfl.Assets;
+import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.events.Event;
 import openfl.geom.Point;
@@ -39,13 +40,19 @@ class Level4 extends VibolLevel
 	private var frog4:Frog;
 	private var frog5:Frog;
 	private var orc1:Orc;
+	private var hole:LongBlock;
+	private var exit:Bitmap;
 	
 	public function new() 
 	{
-		super();
+		super( Assets.getBitmapData('img/texts/level4.png') );
 		activateFighting();
 		
-		floor1 = new LongBlock( 20 );
+		exit = new Bitmap( Assets.getBitmapData('img/cavedoor2.png') );
+		exit.x = 3850;
+		addChild( exit );
+		
+		floor1 = new LongBlock( 20, 'floor-cave' );
 		addElement( floor1, 7 );
 		
 		frog1 = new Frog();
@@ -56,33 +63,33 @@ class Level4 extends VibolLevel
 		addEnnemy( frog2, 6, 10 );
 		frog2.setRoaming( 1, 'left' );
 		
-		block1 = new Block( 'block1' );
+		block1 = new Block('floor-cave');
 		addElement( block1, 6, 19 );
 		
-		block2 = new Block( 'block2' );
+		block2 = new Block('floor-cave');
 		addElement( block2, 6, 22 );
 		
-		block3 = new Block( 'block3' );
+		block3 = new Block('floor-cave');
 		addElement( block3, 6, 26 );
 		
-		block4 = new Block( 'block4' );
+		block4 = new Block('floor-cave');
 		addElement( block4, 5, 31 );
 		
-		block5 = new Block( 'block5' );
+		block5 = new Block('floor-cave');
 		addElement( block5, 4, 36 );
 		
-		block6 = new LongBlock( 2 );
+		block6 = new LongBlock( 2, 'floor-cave' );
 		addElement( block6, 4, 39 );
 		
-		block7 = new Block( 'block7' );
+		block7 = new Block('floor-cave-hot');
 		addElement( block7, 4, 44 );
 		block7.setMoving( 5, 44, 1 );
 		
-		block8 = new Block( 'block8' );
+		block8 = new Block('floor-cave-hot');
 		addElement( block8, 4, 47 );
 		block8.setMoving( 5, 47, 10 );
 		
-		floor2 = new LongBlock( 17 );
+		floor2 = new LongBlock( 17, 'floor-cave-hot' );
 		addElement( floor2, 7, 50 );
 		
 		orc1 = new Orc();
@@ -96,6 +103,11 @@ class Level4 extends VibolLevel
 		endTeleport.y = 64 * 5;
 		endTeleport.x = 64 * 64;
 		addChild( endTeleport );
+		
+		hole = new LongBlock( 30, 'hole-hot');
+		hole.x = 20 * 64;
+		hole.y = 7 * 64;
+		addChild( hole );
 					
 		startingPosition = new Point(1, 6);
 		setHero( new Vibol() );
@@ -105,7 +117,6 @@ class Level4 extends VibolLevel
 		this.graphics.drawRect( 0, 0, thing.width, 514);
 		this.graphics.endFill();
 		
-		init();
 	}
 	
 }

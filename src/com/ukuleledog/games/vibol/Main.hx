@@ -19,7 +19,7 @@ class Main extends Sprite
 {
 	var inited:Bool;
 	var currentState:State;
-	var fps:FPS_Mem;
+	//var fps:FPS_Mem;
 
 	/* ENTRY POINT */
 	
@@ -47,19 +47,34 @@ class Main extends Sprite
 		currentState.addEventListener( Event.COMPLETE, startGame );
 		addChild( currentState );
 		
-		fps = new FPS_Mem( 10, 10, 0xFFFFFF );
-		addChild( fps );
+		//fps = new FPS_Mem( 10, 10, 0xFFFFFF );
+		//addChild( fps );
 	}
 	
 	private function startGame( e:Event )
 	{
-		removeChild( fps );
+		currentState.removeEventListener( Event.COMPLETE, startGame );
+		//removeChild( fps );
 		removeChild( currentState );
 		currentState = new GameState();
 		currentState.alpha = 0;
 		addChild( currentState );
-		addChild( fps );
+		//addChild( fps );
 		Actuate.tween( currentState, 0.5, { alpha:1 } );
+		currentState.addEventListener( Event.COMPLETE, restartGame );
+	}
+	
+	private function restartGame( e:Event )
+	{
+		currentState.removeEventListener( Event.COMPLETE, restartGame );
+		//removeChild( fps );
+		removeChild( currentState );
+		currentState = new IntroState();
+		currentState.alpha = 0;
+		addChild( currentState );
+		//addChild( fps );
+		Actuate.tween( currentState, 0.5, { alpha:1 } );
+		currentState.addEventListener( Event.COMPLETE, startGame );
 	}
 
 	/* SETUP */

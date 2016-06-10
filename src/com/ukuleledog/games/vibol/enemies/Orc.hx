@@ -18,15 +18,15 @@ class Orc extends Ennemy
 	
 	public function new() 
 	{
-		super();
+		super(Assets.getBitmapData( 'img/sprite/orc.png' ));
 		
-		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/orc.png' );
-		this.graphics.beginBitmapFill( imageData );
+		/*var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/orc.png' );
+		this.graphics.beginBitmapFill( imageData );*/
 		
 		//this.graphics.beginFill(0x00FF00);
 		
-		this.graphics.drawRect( 0, 0, 64, 64 );
-		this.graphics.endFill();
+		/*this.graphics.drawRect( 0, 0, 64, 64 );
+		this.graphics.endFill();*/
 	}
 	
 	override public function roam()

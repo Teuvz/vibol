@@ -18,12 +18,20 @@ class Vibol extends Hero
 	{
 		super();
 		
-		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/vibol.png' );
+		bmd = Assets.getBitmapData( 'img/sprite/vibol.png' );
+		
+		createAnimation( 'idle', 0, 0, 1, 64, 64 );
+		createAnimation( 'walk', 64, 0, 2, 64, 64, 0.1 );
+		createAnimation( 'sword', 192, 0, 1, 64, 64 );
+		createAnimation( 'sword2', 256, 0, 1, 64, 64 );
+		
+		animate();
+		
+		/*var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/vibol.png' );
 		this.graphics.beginBitmapFill( imageData );
 		
-		//this.graphics.beginBitmapFill( Assets.getBitmapData('img/hero.png') );
 		this.graphics.drawRect( 0, 0, 64, 64 );
-		this.graphics.endFill();
+		this.graphics.endFill();*/
 		
 	}
 	

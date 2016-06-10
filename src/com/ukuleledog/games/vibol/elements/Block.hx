@@ -12,11 +12,11 @@ import openfl.text.TextField;
 class Block extends GameObject
 {
 
-	public function new( name:String = null ) 
+	public function new( type:String = 'block', name:String = null ) 
 	{
 		super();
 		
-		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/block.png' );
+		var imageData:BitmapData = Assets.getBitmapData( 'img/sprite/'+type+'.png' );
 		this.graphics.beginBitmapFill( imageData );
 		
 		//this.graphics.beginFill( 0xFF0000 );

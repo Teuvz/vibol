@@ -47,6 +47,18 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("img/batman.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/cavedoor.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/cavedoor2.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("img/hero.png");
 		types.push (AssetType.IMAGE);
 		
@@ -87,6 +99,18 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("img/spectre.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/block-cave.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/block-forest.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("img/sprite/block.png");
 		types.push (AssetType.IMAGE);
 		
@@ -99,7 +123,31 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("img/sprite/floor-cave-burning.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/floor-cave-hot.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/floor-cave.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/floor-forest.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("img/sprite/frog.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/hole-hot.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/hole.png");
 		types.push (AssetType.IMAGE);
 		
 		
@@ -115,7 +163,15 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("img/sprite/sword-roc.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("img/sprite/sword.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/sprite/teleport.png");
 		types.push (AssetType.IMAGE);
 		
 		
@@ -123,8 +179,88 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("img/texts/end.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/texts/level1.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/texts/level2.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/texts/level3.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/texts/level4.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/texts/level5.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("img/tree.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("font/MTF Epic.ttf");
 		types.push (AssetType.FONT);
+		
+		
+		urls.push ("snd/01. Sometimes.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/01_converted.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/die.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/intro-correct.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/intro-wrong.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/jump.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/kill.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/metal-bang.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/scream.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/Skye Cuillin.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/Skye_Cuillin_converted.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/sword.mp3");
+		types.push (AssetType.MUSIC);
+		
+		
+		urls.push ("snd/victory.mp3");
+		types.push (AssetType.MUSIC);
 		
 		
 		

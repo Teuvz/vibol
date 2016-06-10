@@ -51,6 +51,11 @@ class AnimatedObject extends GameObject
 		
 	}
 	
+	public function getAnimation():String
+	{
+		return this.currentAnimation;
+	}
+	
 	public function setAnimation( name:String )
 	{
 		if ( name == currentAnimation )

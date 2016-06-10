@@ -15,7 +15,9 @@ import com.ukuleledog.games.vibol.enemies.Schroom;
 import motion.Actuate;
 import motion.easing.Linear;
 import openfl.Assets;
+import openfl.display.Bitmap;
 import openfl.display.BitmapData;
+import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.geom.Point;
 
@@ -38,13 +40,28 @@ class Level5 extends VibolLevel
 	private var orc5:Orc;
 	private var boss:Boss;
 	private var event2:GameEvent;
+	private var hole:LongBlock;
+	
+	private var spectre:Bitmap;
+	private var batman:Bitmap;
+	private var endText:Bitmap;
 	
 	public function new() 
 	{
-		super();
+		super( Assets.getBitmapData('img/texts/level5.png') );
 		activateFighting();
 		
-		floor1 = new LongBlock( 20 );
+		spectre = new Bitmap( Assets.getBitmapData('img/spectre.png') );
+		spectre.alpha = 0.1;
+		spectre.x = 128;
+		addChild( spectre );
+		
+		batman = new Bitmap( Assets.getBitmapData('img/batman.png') );
+		batman.alpha = 0.1;
+		batman.x = 1024;
+		addChild( batman );
+		
+		floor1 = new LongBlock( 20, 'floor-cave-burning' );
 		addElement( floor1, 7 );
 				
 		orc1 = new Orc();
@@ -55,20 +72,25 @@ class Level5 extends VibolLevel
 		addEnnemy( orc2, 6, 7 );
 		orc2.setRoaming(1, "left");
 		
-		block1 = new Block();
+		block1 = new Block('floor-cave' );
 		addElement( block1, 6, 12);
 		
 		orc3 = new Orc();
 		addEnnemy( orc3, 5, 12);
 		
-		block2 = new Block();
+		block2 = new Block('floor-cave' );
 		addElement( block2, 6, 18);
+		
+		hole = new LongBlock( 4, 'hole-hot');
+		hole.x = 20 * 64;
+		hole.y = 7 * 64;
+		addChild( hole );
 		
 		orc4 = new Orc();
 		addEnnemy( orc4, 5, 18);
 		orc4.setHealth(3);
 		
-		floor2 = new LongBlock( 20 );
+		floor2 = new LongBlock( 20, 'floor-cave-burning'  );
 		addElement( floor2, 7, 24 );
 		
 		event1 = new GameEvent('pan');
@@ -93,7 +115,9 @@ class Level5 extends VibolLevel
 		this.graphics.drawRect( 0, 0, thing.width, 514);
 		this.graphics.endFill();
 		
-		init();
+		endText = new Bitmap( Assets.getBitmapData('img/texts/end.png') );
+		endText.alpha = 0;
+		
 	}
 	
 	override public function manageEvent( _gameEvent:GameEvent )
@@ -109,9 +133,14 @@ class Level5 extends VibolLevel
 					
 					Actuate.tween( boss, 2, { 'x': floor2.x } ).ease( Linear.easeNone ).onComplete( function() {
 						
-						trace('animate');
+						Assets.getSound('snd/scream.mp3').play();
+						
+						boss.setAnimation( 'shout' );
 						
 						Actuate.tween( boss, 5, { 'x': 2240 } ).ease( Linear.easeNone ).delay( 3 ).onComplete( function() {
+						
+							boss.setAnimation( 'idle' );
+							
 							Actuate.tween( this, 5, { 'x': -1005.9 } ).ease( Linear.easeNone ).onComplete( function() {
 								boss.setRoaming( 1 );
 								endJump();
@@ -127,9 +156,23 @@ class Level5 extends VibolLevel
 		}
 		else
 		{
+			
 			playing = false;
 			
-			trace('the end');
+			stage.addChild( endText );
+			
+			Actuate.tween( endText, 1, { 'alpha': 1 } ).ease( Linear.easeNone ).onComplete( function() {
+				
+				this.alpha = 0;
+				
+				Assets.getSound('snd/victory.mp3').play();
+				
+				Actuate.tween( endText, 1, { 'alpha': 0 } ).ease( Linear.easeNone ).onComplete( function() {
+					dispatchEvent( new Event( Event.CLOSE ) );
+				}).delay(10);
+				
+			});
+			
 		}
 		
 	}
